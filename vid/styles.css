@@ -102,7 +102,33 @@ body {
   flex:0;
   flex-basis:50%;
 }
+/* Player List */
+.player__list--card{
+    z-index: 0;
+    position: relative;
+}
+.player__list--title{
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 4px;
+    opacity: 0;
+}
 
+.player__list--title:hover {
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    transform: translateY(100%) translateY(-5px);
+    opacity: 1;
+}
+
+@keyframes thumbs-title {
+    from {background-color: red;}
+    to {background-color: yellow;}
+}
 /* unholy css to style input type="range" */
 
 input[type=range] {

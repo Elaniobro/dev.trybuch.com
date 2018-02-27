@@ -7,59 +7,62 @@
 <body>
     <section class="player">
         <video class="player__viewer viewer" poster="http://dev.trybuch.com/vid/poster/harriman.png" src="http://dev.trybuch.com/vid/src/harriman.mp4"></video>
-
         <div class="player__controls">
             <div class="player__progress player__controls--progress">
                 <div class="player__progress--filled"></div>
             </div>
-            <button type="button" class="player__controls--toggle">▶</button>
-            <button type="button" class="player__controls--mute">Mute</button>
-            <input type="range" name="playbackRate" class="player__controls--slider player__controls--playback-rate" min="0.5" max="2" step="0.1" value="1">
+            <button type="button" class="player__controls--toggle">
+                <i class="player__icon--fas fas fa-play"></i>
+            </button>
+            <button type="button" class="player__controls--mute"><i class="player__icon--fas fas fa-volume-up"></i></button>
             <input type="range" name="volume" class="player__controls--slider player__controls--vol" min="0" max="1" step="0.05" value=".5">
-            <button type="button" class="player__controls--fullscreen">Full Screen</button>
-            <button data-skip="-10" class="player__controls--skip-back">« 10s</button>
-            <button data-skip="25" class="player__controls--skip-ahead">25s »</button>
+            <input type="range" name="playbackRate" class="player__controls--slider player__controls--playback-rate" min="0.5" max="2" step="0.1" value="1">
+            <button type="button" class="player__controls--fullscreen"><i class="player__icon--fas fas fa-expand"></i></button>
+            <button data-skip="-10" class="player__controls--skip-back"><i class="player__icon--fas fas fa-undo"></i></button>
+            <button data-skip="25" class="player__controls--skip-ahead"><i class="player__icon--fas fas fa-redo"></i></button>
         </div>
-
-        <ul class="player__playlist">
-
-        </ul>
     </section>
     <aside>
-       <h2>Playlist</h2> 
+       <h2>Playlist</h2>
        <ul class="player__list list">
          <li class="player__list--item list__item">
-          <div class="list__link player__list--link" data-vid-track="http://dev.trybuch.com/vid/src/harriman.mp4" data-poster="http://dev.trybuch.com/vid/poster/harriman.png" class="player--playing" >
-              <span class="icon"><div></div></span>
-              <img width="150" src="http://dev.trybuch.com/vid/poster/harriman.png">
-              <p>Harriman State Park</p>
+          <div class="list__card player__list--card" data-vid-track="http://dev.trybuch.com/vid/src/harriman.mp4" data-poster="http://dev.trybuch.com/vid/poster/harriman.png" class="player--playing" >
+              <i class="player__icon--fas fas fa-play-circle"></i>
+              <i class="player__icon--far far fa-play-circle"></i>
+              <img class="player__list--thumb list__thumb" width="150" src="http://dev.trybuch.com/vid/poster/harriman.png">
+              <p class="player__list--title">Harriman State Park</p>
           </div>
-          
-         </li> 
+
+         </li>
          <li class="player__list--item list__item">
-          <div class="list__link player__list--link" data-vid-track="http://dev.trybuch.com/vid/src/sapta.mp4" data-poster="http://dev.trybuch.com/vid/poster/sapta.png">
-              <span class="icon"><div></div></span>
-              <img width="150" src="http://dev.trybuch.com/vid/thumb/sapta.png">
-              <p>Sarah Ozerovitch Trybuch</p>
-          </div>
-         </li> 
-         <li class="player__list--item list__item">
-          <div class="list__link player__list--link" data-vid-track="http://dev.trybuch.com/vid/src/grandpa_navy_stories.mp4" data-poster="poster/grandpa.png">
-              <span class="icon"><div></div></span>
-              <img width="150" src="http://dev.trybuch.com/vid/thumb/grandpa.png">
-              <p>Daniel Simon naval stories</p>
+          <div class="list__card player__list--card" data-vid-track="http://dev.trybuch.com/vid/src/sapta.mp4" data-poster="http://dev.trybuch.com/vid/poster/sapta.png">
+              <i class="player__icon--fas fas fa-play-circle"></i>
+              <i class="player__icon--far far fa-play-circle"></i>
+              <img class="player__list--thumb list__thumb" width="150" src="http://dev.trybuch.com/vid/thumb/sapta.png">
+              <p class="player__list--title">Sarah Ozerovitch Trybuch</p>
           </div>
          </li>
          <li class="player__list--item list__item">
-          <div class="list__link player__list--link" data-vid-track="http://dev.trybuch.com/vid/src/grandpa.mp4" data-poster="poster/grandpa1.png">
-              <span class="icon"><div></div></span>
-              <img width="150" src="http://dev.trybuch.com/vid/thumb/grandpa1.png">
-              <p>Daniel Simon in memoriam</p>
+          <div class="list__card player__list--card" data-vid-track="http://dev.trybuch.com/vid/src/grandpa_navy_stories.mp4" data-poster="poster/grandpa.png">
+              <i class="player__icon--fas fas fa-play-circle"></i>
+              <i class="player__icon--far far fa-play-circle"></i>
+              <img class="player__list--thumb list__thumb" width="150" src="http://dev.trybuch.com/vid/thumb/grandpa.png">
+              <p class="player__list--title">Daniel Simon naval stories</p>
           </div>
-          
+         </li>
+         <li class="player__list--item list__item">
+          <div class="list__card player__list--card" data-vid-track="http://dev.trybuch.com/vid/src/grandpa.mp4" data-poster="poster/grandpa1.png">
+              <i class="player__icon--fas fas fa-play-circle"></i>
+              <i class="player__icon--far far fa-play-circle"></i>
+              <img class="player__list--thumb list__thumb" width="150" src="http://dev.trybuch.com/vid/thumb/grandpa1.png">
+              <p class="player__list--title">Daniel Simon in memoriam</p>
+          </div>
+
          </li>
        </ul>
    </aside>
-    <script src="vid.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="lib/fontawesome-min.js"></script>
+    <script src="lib/vid.js"></script>
     </body>
 </html>

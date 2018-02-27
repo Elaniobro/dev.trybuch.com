@@ -1,3 +1,5 @@
+'use strict';
+
 const player       = document.querySelector('.player');
 const video        = player.querySelector('.viewer');
 const controls     = player.querySelector('.player__controls')
@@ -19,11 +21,12 @@ function togglePlay() {
 }
 function toggleVolume() {
     video.muted = video.muted ? false : true;
+    muteBtn.innerHTML = video.muted? `<i class="fas fa-volume-off"></i>` : `<i class="fas fa-volume-up"></i>`;
 }
 
 function updateBtn() {
-    const icon = this.paused ? '▶️' : '⏸';
-    toggle.textContent = icon;
+    const icon = this.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+    toggle.innerHTML = icon;
 }
 
 function skip() {
@@ -31,47 +34,55 @@ function skip() {
     video.currentTime = video.currentTime += parseFloat(this.dataset.skip);
 }
 
-function handleRangeUpdate() {
-  video[this.name] = this.value;
-}
-
-function handleProgress() {
-  const percent = (video.currentTime / video.duration) * 100;
-  progressBar.style.flexBasis = `${percent}%`;
-}
-
 function scrub(e) {
-  const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
-  video.currentTime = scrubTime;
+    const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+    video.currentTime = scrubTime;
 }
 
 const fullScreenEnabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);
 
 if (!fullScreenEnabled) {
-   fullscreen.style.display = 'none';
+    fullscreen.style.display = 'none';
 }
 
 function isFullScreen () {
-   return !!(document.fullScreen || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || document.fullscreenElement);
+    return !!(document.fullScreen || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || document.fullscreenElement);
+}
+
+function handleRangeUpdate() {
+    video[this.name] = this.value;
+    muteBtn.innerHTML = video.muted? `<i class="fas fa-volume-off"></i>` : `<i class="fas fa-volume-up"></i>`;
+
+}
+
+function handleProgress() {
+    const percent = (video.currentTime / video.duration) * 100;
+    progressBar.style.flexBasis = `${percent}%`;
 }
 
 function handleFullscreen () {
-   if (isFullScreen()) {
-      if (document.exitFullscreen) document.exitFullscreen();
-      else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
-      else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
-      else if (document.msExitFullscreen) document.msExitFullscreen();
-      setFullscreenData(false);
-   } else {
-      if (player.requestFullscreen) player.requestFullscreen();
-      else if (player.mozRequestFullScreen) player.mozRequestFullScreen();
-      else if (player.webkitRequestFullScreen) player.webkitRequestFullScreen();
-      else if (player.msRequestFullscreen) player.msRequestFullscreen();
-      setFullscreenData(true);
+    if (isFullScreen()) {
+        console.log('isFullScreen')
+        fullscreen.innerHTML = '<i class="fas fa-expand"></i>';
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+        else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
+        else if (document.msExitFullscreen) document.msExitFullscreen();
+        setFullscreenData(false);
+    } else {
+        console.log('!isFullScreen')
+        fullscreen.innerHTML = '<i class="fas fa-compress"></i>';
+        if (player.requestFullscreen) player.requestFullscreen();
+        else if (player.mozRequestFullScreen) player.mozRequestFullScreen();
+        else if (player.webkitRequestFullScreen) player.webkitRequestFullScreen();
+        else if (player.msRequestFullscreen) player.msRequestFullscreen();
+        setFullscreenData(true);
    }
 }
-
+console.log('e');
 function videoTrack(e){
+    console.log(e)
+    console.log(e.target);
     video.src = e.path[1].dataset.vidTrack;
     video.poster = e.path[1].dataset.poster;
     video.play();
